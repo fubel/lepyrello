@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 
 ''' Script that updates ID3 track number (TRCK) from a dictionary of audio files 
-	from information stored in the movement tag (TPOS).
-	Numbers the files in correct order.
+    from information stored in the movement tag (TPOS).
+    Numbers the files in correct order.
 
-	Meant for converting mp3 files used on mp3-players which don't use the TPOS
-	and prevent the mess that would happen otherwise.
+    Meant for converting mp3 files used on mp3-players which don't use the TPOS
+    and prevent the mess that would happen otherwise.
 
-	TODO:
-			*	Optimize code: This is the first commit. Code could be faster.
-			*	Deal with Exceptions
-			*	Build a GUI: To make this useful to a normal user
-			*	Generalize the code to sort by other ID3 tags in similar way 
-			*	Modulize this 
+    TODO:
+            *	Optimize code: This is the first commit. Code could be faster.
+            *	Deal with Exceptions
+            *	Build a GUI: To make this useful to a normal user
+            *	Generalize the code to sort by other ID3 tags in similar way 
+            *	Modulize this 
 '''
 
 # System imports
@@ -95,8 +95,8 @@ def main():
     args = parser.parse_args()
 
     if not args.directory:
-    	parser.print_help()
-    	parser.exit(1)
+        parser.print_help()
+        parser.exit(1)
     
     movements_to_track(args.directory)
 
