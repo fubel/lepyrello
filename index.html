@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lepyrello by fubel</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Lepyrello</h1>
+        <p>Tool that changes special ID3 tags (like movements) for different music formats so mp3 players can display the songs in correct order.</p>
+
+        <p class="view"><a href="https://github.com/fubel/lepyrello">View the Project on GitHub <small>fubel/lepyrello</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/fubel/lepyrello/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/fubel/lepyrello/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/fubel/lepyrello">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="lepyrello" class="anchor" href="#lepyrello" aria-hidden="true"><span class="octicon octicon-link"></span></a>lepyrello</h1>
+
+<p>lepyrello is a Python script that converts audio files with ID3-movement-tag (TPOS) into audio files using ID3-track-number-tag (TRCK) only. It also numbers the audio filenames in correct order. I did this because my mp3-player does not know the TPOS-tag and therefore messes up  classical music album trackings on a regular basis.</p>
+
+<p>I keep adding new ways of sorting. This will become my own little id3-manipulator ;)</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>You need Python 3.4+ to execute the script.</p>
+
+<pre><code>git clone git@github.com:fubel/lepyrello.git
+pip install mutagen
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To execute the tpos-to-trck converter (see below what it does), execute</p>
+
+<pre><code>python lepyrello.py -ttt -d /your/music/directory/
+</code></pre>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>Let a record of 'Don Giovanni' be located in /home/music/giovanni/ with the following files:</p>
+
+<table>
+<thead>
+<tr>
+<th>FILENAME</th>
+<th>ID3-TRACK</th>
+<th>ID3-TPOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overture.mp3</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Notte e giorno faticar.mp3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Leporello, ove sei.mp3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Ma qual mai s'offre.mp3</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>Eh via, buffone.mp3</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>Ah! pieta, signorie miei.mp3</td>
+<td>13</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+<p>The command</p>
+
+<pre><code>python lepyrello.py -ttt -d /home/music/giovanni/
+</code></pre>
+
+<p>will convert this to</p>
+
+<table>
+<thead>
+<tr>
+<th>FILENAME</th>
+<th>ID3-TRACK</th>
+<th>ID3-TPOS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01-Overture.mp3</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>02-Notte e giorno faticar.mp3</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>03-Leporello, ove sei.mp3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>04-Ma qual mai s'offre.mp3</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>19-Eh via, buffone.mp3</td>
+<td>19</td>
+<td>1</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>32-Ah! pieta, signorie miei.mp3</td>
+<td>32</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+
+<p>so the first track of TPOS 2 is now the next track of the last track of TPOS 1 and so on...</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/fubel">fubel</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
