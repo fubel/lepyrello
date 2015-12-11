@@ -2,6 +2,8 @@
 
 lepyrello is a Python script that converts audio files with ID3-movement-tag (TPOS) into audio files using ID3-track-number-tag (TRCK) only. It also numbers the audio filenames in correct order. I did this because my mp3-player does not know the TPOS-tag and therefore messes up  classical music album trackings on a regular basis.
 
+I keep adding new ways of sorting. This will become my own little id3-manipulator ;)
+
 ## Installation
 
 You need Python 3.4+ to execute the script.
@@ -11,7 +13,9 @@ You need Python 3.4+ to execute the script.
 
 ## Usage
 
-	python lepyrello.py -d /your/music/directory/
+To execute the tpos-to-trck converter (see below what it does), execute
+
+	python lepyrello.py -ttt -d /your/music/directory/
 
 ## Example
 
@@ -30,8 +34,8 @@ Let a record of 'Don Giovanni' be located in /home/music/giovanni/ with the foll
 
 The command
 
-    python lepyrello.py -d /your/music/directory/
-
+    python lepyrello.py -ttt -d /home/music/giovanni/
+    
 will convert this to
 
 | FILENAME                        | ID3-TRACK | ID3-TPOS |
