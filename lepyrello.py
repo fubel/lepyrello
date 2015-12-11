@@ -43,30 +43,32 @@ def set_id3_track(audio, nr):
 
 
 def generate_movement_dict(audios):
-    mvmts = OrderedDict()
+    mvmts = {}
     files_in_dir = [str(p)
                     for p in pathlib.Path(audios).iterdir() if p.is_file()]
     for audio in files_in_dir:
         audio_tpos = get_audio_tpos(ID3(audio))
         audio_track = int(get_audio_track(ID3(audio)))
         try:
-            mvmts[audio_tpos].append((audio, audio_track))
+            mvmts[int(audio_tpos)].append((audio, audio_track))
         except KeyError:
-            mvmts[audio_tpos] = [(audio, audio_track)]
+            mvmts[int(audio_tpos)] = [(audio, audio_track)]
     for k in mvmts:
         mvmts[k].sort(key=operator.itemgetter(1))
 
-    return mvmts
+    return OrderedDict(sorted(mvmts.items()))
 
 
 def number_audios(dictionary):
     j = 1
-    keylist = []
+    max_track = dictionary[list(dictionary)[-1]][-1][-1]
     for key in dictionary:
         for audio in dictionary[key]:
             audio = audio[0]
             path, filename = os.path.split(audio)
-            audio_new = os.path.join(path, str(j) + ' ' + filename)
+            number_leading = str(j).zfill(len(str(max_track)))
+            prefix = str(number_leading) + '-'
+            audio_new = os.path.join(path, prefix + filename)
             os.rename(audio, audio_new)
             set_id3_track(ID3(audio_new), j)
             j = j+1
@@ -84,7 +86,7 @@ def update_id3_max_track(audios, max_track):
 def movements_to_track(directory):
     movements = generate_movement_dict(directory)
     max_track = number_audios(movements)
-    # update_id3_max_track(directory, max_track)
+    update_id3_max_track(directory, max_track)
     print("finished.")
 
 
