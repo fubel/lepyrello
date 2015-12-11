@@ -11,15 +11,17 @@ from mutagen.id3 import *
 
 
 class audio:
+
     """
     Lepyrello audio class suited for our converters.
     Contains location of file and it's mutagen.id3. 
     """
+
     def __init__(self, location):
         self.location = location
         try:
             self.id3 = ID3(location)
-        except: 
+        except:
             raise NotAnAudioFileException(location)
 
     def get_track(self):

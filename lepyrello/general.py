@@ -11,6 +11,7 @@ from collections import OrderedDict
 from id3 import audio
 from exceptions import NotAnAudioFileException, TagNotSupportedException
 
+
 def get_audio_list(location):
     """
     Returns a list of lepyrello.audio items from files 
@@ -22,7 +23,7 @@ def get_audio_list(location):
             try:
                 audio_list.append(audio(str(p)))
             except NotAnAudioFileException:
-                pass 
+                pass
 
     return audio_list
 
@@ -39,5 +40,5 @@ def generate_audio_dict(tag, audio_list):
     supported_tags = ["TPOS"]
     if not tag in supported_tags:
         raise TagNotSupportedException(tag)
-    
+
     pass
