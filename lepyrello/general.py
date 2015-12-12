@@ -44,6 +44,11 @@ def generate_audio_dict(tag, audio_list, return_sorted=True):
     if not tag in supported_tags:
         raise TagNotSupportedException(tag)
 
+    """
+    The following code section works only for TPOS.
+    When more tags are added to supported_tags it
+    should be rewritten.
+    """
     # create unsorted dict
     audio_dict = {}
     for a in audio_list:
