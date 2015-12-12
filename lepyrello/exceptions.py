@@ -4,7 +4,9 @@ Contains all exceptions for lepyrello
 
 
 class NotAnAudioFileException(Exception):
-
+    """
+    Raise this when file has no id3 tags
+    """
     def __init__(self, name):
         self.name = name
 
@@ -13,7 +15,9 @@ class NotAnAudioFileException(Exception):
 
 
 class TagNotSupportedException(Exception):
-
+    """
+    Converters raise this when a tag is not supported
+    """
     def __init__(self, tag):
         self.tag = tag
 
