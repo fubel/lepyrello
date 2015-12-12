@@ -47,7 +47,7 @@ class audio:
         nr = str(nr) + "/" + str(nr)
         self.id3.add(TRCK(encoding=1, text=nr))
 
-        # save this only if temp=True
+        # save this only if temp=False
         if not temp:
             self.id3.save()
 
