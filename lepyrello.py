@@ -15,6 +15,9 @@ def main():
         parser.exit(1)
 
     if args.ttt:
+        """
+        TODO: rewrite the converter. It should get the audio_list and _dict itself.
+        """
         print("Started TPOS-to-TRACK converter for %s" % args.directory)
         audio_list = get_audio_list(args.directory)
         audio_dict = generate_audio_dict("TPOS", audio_list)
