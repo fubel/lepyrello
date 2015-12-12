@@ -17,9 +17,15 @@ You can test your installation typing
 
 ## Usage
 
+### TPOS-to-TRCK converter
+
 To execute the tpos-to-trck converter (see below what it does), execute
 
 	python lepyrello.py -ttt -d /your/music/directory/
+
+### Other converters
+
+Other converters are not implemented yet.
 
 ## Example
 
