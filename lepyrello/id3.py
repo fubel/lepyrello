@@ -1,23 +1,30 @@
 """
-Collection of functions used to read and manipulate 
-id3 tags from audiofiles using mutagen.id3.  
+Collection of functions used to read and manipulate
+id3 tags from audiofiles using mutagen.id3.
 """
 
 # Python imports
 import os
+from sys import exit
 
 # Lepyrello imports
 from lepyrello.exceptions import NotAnAudioFileException
 
 # Third party imports
-from mutagen.id3 import TRCK
-from mutagen.id3 import *
+try:
+    from mutagen.id3 import TRCK
+    from mutagen.id3 import *
+except ImportError as e:
+    print("It seems mutagen is not installed. Install with:")
+    print("pip3 install mutagen")
+    exit(1)
 
 
 class audio:
+
     """
     Lepyrello audio class suited for our converters.
-    Contains location of file and it's mutagen.id3. 
+    Contains location of file and it's mutagen.id3.
     """
 
     def __init__(self, location):

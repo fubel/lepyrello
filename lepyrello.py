@@ -1,22 +1,31 @@
 #!/usr/bin/env python
-import argparse 
+import argparse
+import os
 
 from lepyrello.general import get_audio_list, generate_audio_dict
 from lepyrello.converters import tpos_to_trck
 
+
 def main():
     parser = argparse.ArgumentParser(description='lepyrello id3 tag converter')
-    parser.add_argument('-d', dest='directory', help='directory containing the music')
-    parser.add_argument('-ttt', dest='ttt', help='use tpos to track converter', action="store_true")
+    parser.add_argument(
+        '-d',
+        dest='directory',
+        help='directory containing the music',
+        required=True)
+    parser.add_argument(
+        '-ttt', dest='ttt',
+        help='use tpos to track converter',
+        action="store_true")
     args = parser.parse_args()
 
-    if not args.directory:
-        parser.print_help()
-        parser.exit(1)
+    if not os.path.exists(args.directory):
+        parser.error("Please enter a valid path with correct permissions")
 
     if args.ttt:
         """
-        TODO: rewrite the converter. It should get the audio_list and _dict itself.
+        TODO: rewrite the converter. It should get the audio_list and audio_dict
+        itself.
         """
         print("Started TPOS-to-TRACK converter for %s" % args.directory)
         audio_list = get_audio_list(args.directory)
